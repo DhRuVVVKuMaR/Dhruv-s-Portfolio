@@ -19,7 +19,9 @@ const Contact = () => {
   const toast = useToast()
 
   const bgColor = useColorModeValue('white', 'dark.800')
-  const textColor = useColorModeValue('dark.600', 'dark.300')
+  const textColor = useColorModeValue('gray.800', 'gray.200');
+  const labelColor = useColorModeValue('gray.600', 'gray.400');
+  const iconColor = useColorModeValue('brand.500', 'brand.300');
   const cardBg = useColorModeValue('white', 'dark.700')
   const borderColor = useColorModeValue('gray.200', 'gray.600')
 
@@ -143,67 +145,38 @@ const Contact = () => {
                 bgClip="text"
               >
                 Let's Connect
-              </Heading>
+          </Heading>
               
               <Text fontSize="xl" color={textColor} lineHeight="1.8">
                 I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-              </Text>
+          </Text>
 
               <VStack align="start" spacing={6} w="full">
                 <HStack spacing={4}>
-                  <Icon as={FaEnvelope} w={6} h={6} color="brand.500" />
+                  <Icon as={FaEnvelope} w={6} h={6} color={iconColor} />
                   <VStack align="start" spacing={0}>
-                    <Text fontWeight="bold">Email Address</Text>
+                    <Text fontWeight="bold" color={labelColor}>Email Address</Text>
                     <Text color={textColor}>codewithdhruvkumar@gmail.com</Text>
                   </VStack>
                 </HStack>
+
                 <HStack spacing={4}>
-                  <Icon as={FaMapMarkerAlt} w={6} h={6} color="brand.500" />
+                  <Icon as={FaMapMarkerAlt} w={6} h={6} color={iconColor} />
                   <VStack align="start" spacing={0}>
-                    <Text fontWeight="bold">Location</Text>
+                    <Text fontWeight="bold" color={labelColor}>Location</Text>
                     <Text color={textColor}>Noida, Uttar Pradesh, India</Text>
                   </VStack>
                 </HStack>
               </VStack>
 
               <VStack align="start" spacing={4} w="full">
-                <Text fontWeight="bold">Connect with me</Text>
+                <Text fontWeight="bold" color={labelColor}>Connect with me</Text>
                 <HStack spacing={4}>
-                  <Button
-                    as="a"
-                    href="https://github.com/DhRuVVVKuMaR"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="ghost"
-                    size="lg"
-                    _hover={{ transform: 'translateY(-2px)', color: 'brand.500' }}
-                  >
-                    <Icon as={FaGithub} w={6} h={6} />
-                  </Button>
-                  <Button
-                    as="a"
-                    href="https://www.linkedin.com/in/dhruv-kumar23/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="ghost"
-                    size="lg"
-                    _hover={{ transform: 'translateY(-2px)', color: 'brand.500' }}
-                  >
-                    <Icon as={FaLinkedin} w={6} h={6} />
-                  </Button>
-                  <Button
-                    as="a"
-                    href="https://x.com/DhruvK08747294"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="ghost"
-                    size="lg"
-                    _hover={{ transform: 'translateY(-2px)', color: 'brand.500' }}
-                  >
-                    <Icon as={FaTwitter} w={6} h={6} />
-                  </Button>
+                  <Button as="a" href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" variant="ghost" size="lg" _hover={{ transform: 'translateY(-2px)', color: iconColor }}><Icon as={FaGithub} w={6} h={6} /></Button>
+                  <Button as="a" href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" variant="ghost" size="lg" _hover={{ transform: 'translateY(-2px)', color: iconColor }}><Icon as={FaLinkedin} w={6} h={6} /></Button>
+                  <Button as="a" href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" variant="ghost" size="lg" _hover={{ transform: 'translateY(-2px)', color: iconColor }}><Icon as={FaTwitter} w={6} h={6} /></Button>
                 </HStack>
-              </VStack>
+            </VStack>
             </MotionVStack>
           </GridItem>
 
@@ -284,12 +257,12 @@ const Contact = () => {
                   >
                     Send Message
                   </Button>
-                </VStack>
+      </VStack>
               </form>
             </MotionBox>
           </GridItem>
         </MotionGrid>
-      </Container>
+    </Container>
     </Box>
   )
 }

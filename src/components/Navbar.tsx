@@ -1,24 +1,38 @@
-import React from 'react'
-import { Box, Flex, Link, Button, useColorModeValue, Container, IconButton, useDisclosure, VStack, HStack, Text, useColorMode, Image } from '@chakra-ui/react'
-import { Link as RouterLink } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { FaBars, FaTimes, FaMoon, FaSun } from 'react-icons/fa'
+import React, { useEffect, useState } from 'react';
+import { Box, Flex, Link, Button, useColorModeValue, Container, IconButton, useDisclosure, VStack, HStack, Text, useColorMode, Image } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaBars, FaTimes, FaMoon, FaSun } from 'react-icons/fa';
+import { getTheme, modernLight, elegantDark } from '../theme';
 
-const MotionBox = motion(Box)
-const MotionFlex = motion(Flex)
-const MotionLink = motion(Link)
+const MotionBox = motion(Box);
+const MotionFlex = motion(Flex);
+const MotionLink = motion(Link);
 
 const Navbar = () => {
-  const bgColor = useColorModeValue('rgba(255, 255, 255, 0.8)', 'rgba(26, 32, 44, 0.8)')
-  const borderColor = useColorModeValue('gray.200', 'gray.700')
-  const { isOpen, onToggle } = useDisclosure()
-  const { colorMode, toggleColorMode } = useColorMode()
+  const bgColor = useColorModeValue('rgba(255, 255, 255, 0.8)', 'rgba(26, 32, 44, 0.8)');
+  const borderColor = useColorModeValue('gray.200', 'gray.700');
+  const { isOpen, onToggle } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();
+  const [themeName, setThemeName] = useState(() => localStorage.getItem('themeName') || 'light');
+
+  useEffect(() => {
+    localStorage.setItem('themeName', themeName);
+    // Dynamically update the theme (for ChakraProvider in App.tsx)
+    const event = new CustomEvent('themeChange', { detail: themeName });
+    window.dispatchEvent(event);
+  }, [themeName]);
+
+  const handleThemeToggle = () => {
+    setThemeName((prev) => (prev === 'light' ? 'dark' : 'light'));
+    toggleColorMode();
+  };
 
   const menuItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Projects', path: '/projects' },
-  ]
+  ];
 
   const navVariants = {
     hidden: { y: -100, opacity: 0 },
@@ -111,6 +125,7 @@ const Navbar = () => {
     >
       <Container maxW="1200px">
         <Flex h={20} alignItems="center" justifyContent="space-between">
+          {/* Logo and Name */}
           <MotionBox
             variants={itemVariants}
             initial="hidden"
@@ -195,7 +210,9 @@ const Navbar = () => {
                 _hover={{
                   _after: {
                     width: '100%',
+                    left: '0',
                   },
+                  color: 'brand.500',
                 }}
               >
                 Dhruv Kumar
@@ -223,10 +240,6 @@ const Navbar = () => {
                 fontWeight="medium"
                 position="relative"
                 color={useColorModeValue('gray.700', 'gray.200')}
-                _hover={{
-                  textDecoration: 'none',
-                  color: 'brand.500',
-                }}
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 _after={{
@@ -240,6 +253,8 @@ const Navbar = () => {
                   transition: 'all 0.3s ease',
                 }}
                 _hover={{
+                  textDecoration: 'none',
+                  color: 'brand.500',
                   _after: {
                     width: '100%',
                     left: '0',
@@ -275,14 +290,15 @@ const Navbar = () => {
                 Contact Me
               </Button>
             </MotionBox>
+            {/* Theme Toggle Button */}
             <MotionBox
               whileHover={{ rotate: 180 }}
               transition={{ duration: 0.3 }}
             >
               <IconButton
-                aria-label="Toggle color mode"
-                icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
-                onClick={toggleColorMode}
+                aria-label="Toggle theme"
+                icon={themeName === 'light' ? <FaMoon /> : <FaSun />}
+                onClick={handleThemeToggle}
                 variant="ghost"
                 size="md"
                 borderRadius="full"
@@ -301,10 +317,11 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
             >
               <IconButton
-                onClick={toggleColorMode}
-                icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
+                aria-label="Toggle theme"
+                icon={themeName === 'light' ? <FaMoon /> : <FaSun />}
+                onClick={handleThemeToggle}
                 variant="ghost"
-                aria-label="Toggle color mode"
+                size="md"
                 borderRadius="full"
                 _hover={{
                   bg: useColorModeValue('gray.100', 'gray.700'),
@@ -314,7 +331,7 @@ const Navbar = () => {
             </MotionBox>
             <MotionBox
               whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
               <IconButton
                 onClick={onToggle}
@@ -403,7 +420,7 @@ const Navbar = () => {
         </AnimatePresence>
       </Container>
     </MotionBox>
-  )
-}
+  );
+};
 
-export default Navbar 
+export default Navbar; 

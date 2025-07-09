@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Container, Heading, Text, SimpleGrid, VStack, HStack, Icon, useColorMode, useColorModeValue, Badge, Flex } from '@chakra-ui/react'
 import { FaReact, FaNodeJs, FaPython, FaDatabase, FaAws, FaUserTie, FaBriefcase, FaLaptopCode, FaCode, FaServer, FaHtml5, FaCss3Alt, FaJsSquare, FaGitAlt, FaPhp } from 'react-icons/fa'
-import { SiCplusplus } from 'react-icons/si'
+import { SiCplusplus, SiTypescript, SiTailwindcss, SiPandas, SiNumpy, SiExpress } from 'react-icons/si'
 import { motion } from 'framer-motion'
 
 const MotionBox = motion(Box)
@@ -12,13 +12,17 @@ const MotionIcon = motion(Icon)
 
 const skills = [
   { name: 'React', icon: FaReact, color: 'cyan' },
-  { name: 'TypeScript', icon: FaDatabase, color: 'blue' },
+  { name: 'TypeScript', icon: SiTypescript, color: 'blue' },
   { name: 'Node.js', icon: FaNodeJs, color: 'green' },
+  { name: 'ExpressJS', icon: SiExpress, color: 'gray' },
   { name: 'Python', icon: FaPython, color: 'yellow' },
+  { name: 'Pandas', icon: SiPandas, color: 'teal' },
+  { name: 'Numpy', icon: SiNumpy, color: 'orange' },
   { name: 'SQL', icon: FaDatabase, color: 'purple' },
   { name: 'AWS', icon: FaAws, color: 'orange' },
   { name: 'HTML5', icon: FaHtml5, color: 'orange' },
   { name: 'CSS3', icon: FaCss3Alt, color: 'blue' },
+  { name: 'TailwindCSS', icon: SiTailwindcss, color: 'cyan' },
   { name: 'JavaScript', icon: FaJsSquare, color: 'yellow' },
   { name: 'C++', icon: SiCplusplus, color: 'blue' },
   { name: 'Git', icon: FaGitAlt, color: 'red' },
@@ -26,6 +30,13 @@ const skills = [
 ]
 
 const experiences = [
+  {
+    title: 'AI Software Development Intern',
+    company: 'SabPaisa',
+    period: 'June 2024 - Present',
+    description: 'Built AI-powered workflow optimization desktop app (WoFlow) using React, Electron, and Gemini AI. Improved stability, performance, and collaborated on code reviews.',
+    icon: FaLaptopCode,
+  },
   {
     title: 'Web Development Intern',
     company: 'SkillCraft Technologies',
@@ -46,7 +57,8 @@ const About = () => {
   const { colorMode } = useColorMode()
   const cardBg = useColorModeValue('white', 'gray.800')
   const cardShadow = useColorModeValue('lg', 'dark-lg')
-  const textColor = useColorModeValue('gray.700', 'gray.200')
+  const textColor = useColorModeValue('gray.800', 'gray.200');
+  const labelColor = useColorModeValue('gray.600', 'gray.400');
   const sectionBg = useColorModeValue('gray.50', 'gray.900')
 
   const containerVariants = {
@@ -120,11 +132,8 @@ const About = () => {
                 About Me
               </Heading>
               <Text fontSize="lg" color={textColor} mb={6}>
-              I'm Dhruv Kumar, a B.Tech student in Electronics and Communication at JIIT Noida, passionate about software development and problem-solving. I specialize in frontend (React.js, HTML, CSS, JS) and backend (PHP, MySQL), with a strong foundation in C++, Python, and DSA.
-
-From building games with Java Swing to creating real-world tools like a Huffman-based file compressor and an emergency response web app, I enjoy turning ideas into impactful projects. I'm also active in open-source, hackathons, and tech communities, and I'm currently seeking internship opportunities to grow as a developer.
-
-
+                I'm a passionate Full Stack Developer who loves crafting elegant, performant, and user-friendly web applications.
+                With a focus on building scalable solutions and a keen eye for detail, I transform ideas into impactful digital experiences.
               </Text>
               <Box
                 bg={useColorModeValue('gray.100', 'gray.700')}
@@ -133,7 +142,7 @@ From building games with Java Swing to creating real-world tools like a Huffman-
                 py={2}
                 display="inline-block"
               >
-                <Text fontSize="md" fontStyle="italic" color={useColorModeValue('gray.600', 'gray.300')}>
+                <Text fontSize="md" fontStyle="italic" color={labelColor}>
                   "Bridging the gap between innovative design and robust functionality."
                 </Text>
               </Box>
@@ -213,12 +222,16 @@ From building games with Java Swing to creating real-world tools like a Huffman-
                   spacing={3}
                 >
                   <HStack justify="space-between" w="full">
-                    <Heading size="sm" color="purple.500">Core Committee Member</Heading>
+                    <Heading size="sm" color="purple.500">
+                      Core Committee Member
+                    </Heading>
                     <Badge colorScheme="purple">2023 - 2025</Badge>
                   </HStack>
-                  <Text fontWeight="bold" fontSize="md">Jaypee Youth Club</Text>
+                  <Text fontWeight="bold" fontSize="md" color={useColorModeValue('gray.700', 'gray.200')}>
+                    Jaypee Youth Club
+                  </Text>
                   <Text fontSize="sm" color={textColor}>
-                  Actively contributed to organizing student engagement events, workshops, and social initiatives at JIIT Noida.
+                    Actively contributed to organizing student engagement events, workshops, and social initiatives at JIIT Noida.
                   </Text>
                 </VStack>
               </MotionBox>
@@ -236,12 +249,16 @@ From building games with Java Swing to creating real-world tools like a Huffman-
                   spacing={3}
                 >
                   <HStack justify="space-between" w="full">
-                    <Heading size="sm" color="purple.500">Student Volunteer</Heading>
+                    <Heading size="sm" color="purple.500">
+                      Student Volunteer
+                    </Heading>
                     <Badge colorScheme="purple">2024 - Present</Badge>
                   </HStack>
-                  <Text fontWeight="bold" fontSize="md">IEEE AP-S Student Branch Chapter, JIIT Noida</Text>
+                  <Text fontWeight="bold" fontSize="md" color={useColorModeValue('gray.700', 'gray.200')}>
+                    IEEE AP-S Student Branch Chapter, JIIT Noida
+                  </Text>
                   <Text fontSize="sm" color={textColor}>
-                  Assisted in planning and executing seminars and outreach programs focused on antennas and signal propagation.
+                    Assisted in planning and executing seminars and outreach programs focused on antennas and signal propagation.
                   </Text>
                 </VStack>
               </MotionBox>
@@ -259,13 +276,16 @@ From building games with Java Swing to creating real-world tools like a Huffman-
                   spacing={3}
                 >
                   <HStack justify="space-between" w="full">
-                    <Heading size="sm" color="purple.500">Event Coordinator</Heading>
+                    <Heading size="sm" color="purple.500">
+                      Event Coordinator
+                    </Heading>
                     <Badge colorScheme="purple">2024 - Present</Badge>
                   </HStack>
-                  <Text fontWeight="bold" fontSize="md">IEEE MTT-S Student Branch Chapter, JIIT Noida
+                  <Text fontWeight="bold" fontSize="md" color={useColorModeValue('gray.700', 'gray.200')}>
+                    IEEE MTT-S Student Branch Chapter, JIIT Noida
                   </Text>
                   <Text fontSize="sm" color={textColor}>
-                  Supported technical events and knowledge-sharing sessions on microwave theory and communication techniques.
+                    Supported technical events and knowledge-sharing sessions on microwave theory and communication techniques.
                   </Text>
                 </VStack>
               </MotionBox>
