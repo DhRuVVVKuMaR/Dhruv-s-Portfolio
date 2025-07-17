@@ -175,7 +175,7 @@ const Home = () => {
                 borderColor="purple.400"
                 color="purple.400"
                 onClick={() => {
-                  const resumeUrl = '/resume.pdf';
+                  const resumeUrl = '/myResume.pdf';
                   fetch(resumeUrl)
                     .then(response => {
                       if (!response.ok) throw new Error('Resume file not found');
@@ -185,7 +185,7 @@ const Home = () => {
                       const url = window.URL.createObjectURL(blob);
                       const a = document.createElement('a');
                       a.href = url;
-                      a.download = 'Dhruv_Kumar_Resume.pdf';
+                      a.download = 'myResume.pdf';
                       document.body.appendChild(a);
                       a.click();
                       window.URL.revokeObjectURL(url);
