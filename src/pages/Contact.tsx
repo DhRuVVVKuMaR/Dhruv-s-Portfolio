@@ -7,14 +7,23 @@ const MotionBox = motion(Box)
 const MotionGrid = motion(Grid)
 const MotionVStack = motion(VStack)
 
+type ContactFormFields = {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
+
+type ContactFormErrors = Partial<Record<keyof ContactFormFields, string>>
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormFields>({
     name: '',
     email: '',
     subject: '',
     message: ''
   })
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState<ContactFormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const toast = useToast()
 
@@ -25,7 +34,7 @@ const Contact = () => {
   const cardBg = useColorModeValue('white', 'dark.700')
   const borderColor = useColorModeValue('gray.200', 'gray.600')
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
@@ -41,7 +50,7 @@ const Contact = () => {
   }
 
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors: ContactFormErrors = {}
     if (!formData.name) newErrors.name = 'Name is required'
     if (!formData.email) {
       newErrors.email = 'Email is required'
@@ -54,7 +63,7 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!validateForm()) return
 
@@ -193,7 +202,7 @@ const Contact = () => {
             >
               <form onSubmit={handleSubmit}>
                 <VStack spacing={6}>
-                  <FormControl isInvalid={errors.name}>
+                  <FormControl isInvalid={Boolean(errors.name)}>
                     <FormLabel>Name</FormLabel>
                     <Input
                       name="name"
@@ -205,7 +214,7 @@ const Contact = () => {
                     <FormErrorMessage>{errors.name}</FormErrorMessage>
                   </FormControl>
 
-                  <FormControl isInvalid={errors.email}>
+                  <FormControl isInvalid={Boolean(errors.email)}>
                     <FormLabel>Email</FormLabel>
                     <Input
                       name="email"
@@ -218,7 +227,7 @@ const Contact = () => {
                     <FormErrorMessage>{errors.email}</FormErrorMessage>
                   </FormControl>
 
-                  <FormControl isInvalid={errors.subject}>
+                  <FormControl isInvalid={Boolean(errors.subject)}>
                     <FormLabel>Subject</FormLabel>
                     <Input
                       name="subject"
@@ -230,7 +239,7 @@ const Contact = () => {
                     <FormErrorMessage>{errors.subject}</FormErrorMessage>
                   </FormControl>
 
-                  <FormControl isInvalid={errors.message}>
+                  <FormControl isInvalid={Boolean(errors.message)}>
                     <FormLabel>Message</FormLabel>
                     <Textarea
                       name="message"

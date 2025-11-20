@@ -248,7 +248,7 @@ const Home = () => {
               zIndex={1}
             />
             <Avatar
-              src="/dhruv.jpg"
+              src="/dhruvPhoto.jpg.jpg"
               name="Dhruv Kumar"
               size="2xl"
               borderWidth={4}
