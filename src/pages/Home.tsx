@@ -175,7 +175,7 @@ const Home = () => {
                 borderColor="purple.400"
                 color="purple.400"
                 onClick={() => {
-                  const resumeUrl = '/myResume.pdf';
+                  const resumeUrl = '/Dhruv_s_Resume.pdf';
                   fetch(resumeUrl)
                     .then(response => {
                       if (!response.ok) throw new Error('Resume file not found');
